@@ -10,6 +10,10 @@ class AthenaCommands(commands.Cog):
     async def ping(self, ctx):
         await ctx.send(f'Pong! {round(self.bot.latency * 1000)}ms')
 
+    @commands.command()
+    async def pog(self, ctx):
+        await ctx.send('<:pog:804373562274217985>')
+
     #song command
     @commands.command()
     async def song(self, ctx):
