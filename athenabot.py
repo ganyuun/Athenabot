@@ -3,7 +3,7 @@ import os
 import discord
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix='$', activity = discord.Game(name="music", type=discord.ActivityType.listening), status=discord.Status.online)
+bot = commands.Bot(command_prefix='$', activity=discord.Activity(name="music", type=discord.ActivityType.listening), status=discord.Status.online)
 
 #output a string when bot goes online
 @bot.event
