@@ -17,7 +17,7 @@ class AthenaCommands(commands.Cog):
         """Sends a pog emoji"""
         await ctx.send('<:pog:804373562274217985>')
 
-     @commands.command()
+    @commands.command()
     async def NOW(self, ctx):
         """Sends a LTG emoji"""
         await ctx.send('<a:NOW:925563242779136040>')
