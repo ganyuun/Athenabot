@@ -1,5 +1,7 @@
 import os
 import discord
+import inspect
+import textwrap
 from discord.ext import commands
 
 class Admin(commands.Cog):
