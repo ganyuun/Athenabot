@@ -8,7 +8,7 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def reload(self, ctx):
+    async def reload(self, ctx: commands.Context):
         """Reloads the bot's cogs"""
         for cog in tuple(self.bot.extensions.keys()):
             self.bot.reload_extension(cog)
@@ -16,7 +16,7 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def update(self, ctx):
+    async def update(self, ctx: commands.Context):
         """Updates the bot then reloads the cogs"""
         # Update files from github
         stream = os.popen('git pull')
@@ -44,9 +44,19 @@ class Admin(commands.Cog):
             await ctx.send(f'```{output}```')
         else:
             await ctx.message.add_reaction('✅')
+    
+    @commands.command(aliases=["python"])
+    async def code(self, ctx: commands.Context, cmd):
+        """Sends the code that makes up a command of this bot"""
+        try:
+            code = inspect.getsource(self.bot.all_commands[cmd].callback)
+            code = textwrap.dedent(code).replace("```", "`")[:1990]
+            await ctx.send(f'```py\n{code}```')
+        except KeyError:
+            await ctx.send("Can't find a command with that name")
 
     @commands.Cog.listener()
-    async def on_command_error(self, ctx, error: commands.CommandError):
+    async def on_command_error(self, ctx: commands.Context, error: commands.CommandError):
         if isinstance(error, commands.NotOwner):
             await ctx.message.add_reaction('❌')
         else:
