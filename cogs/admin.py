@@ -44,6 +44,16 @@ class Admin(commands.Cog):
             await ctx.send(f'```{output}```')
         else:
             await ctx.message.add_reaction('✅')
+    
+    @commands.command(aliases=["python"])
+    async def code(self, ctx: Context, cmd):
+        """Sends the code that makes up a command of this bot"""
+        try:
+            code = inspect.getsource(self.bot.all_commands[cmd].callback)
+            code = textwrap.dedent(code).replace("```", "`")[:1990]
+            await ctx.send(f'```py\n{code}```')
+        except KeyError:
+            await ctx.send("Can't find a command with that name")
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error: commands.CommandError):
