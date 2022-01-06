@@ -54,13 +54,13 @@ class Admin(commands.Cog):
 
 
 class EmbedHelpCommand(commands.HelpCommand):
-    COLOR = discord.Color(int('FCDF99', 16))
+    COLOR = discord.Color(int('AD2747', 16))
 
     def get_command_signature(self, command):
         return f'{command.qualified_name} {command.signature}'
 
     async def send_bot_help(self, mapping):
-        embed = discord.Embed(title='Grey Commands', colour=self.COLOR)
+        embed = discord.Embed(title='AthenaBot Commands', colour=self.COLOR)
         for cog, cmds in mapping.items():
             name = 'No Category' if cog is None else cog.qualified_name
             filtered = await self.filter_commands(cmds, sort=True)
