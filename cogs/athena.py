@@ -8,15 +8,18 @@ class AthenaCommands(commands.Cog):
     #ping command
     @commands.command()
     async def ping(self, ctx):
+        """Sends a message with ping in ms"""
         await ctx.send(f'Pong! {round(self.bot.latency * 1000)}ms')
 
     @commands.command()
     async def pog(self, ctx):
+        """Sends a pog emoji"""
         await ctx.send('<:pog:804373562274217985>')
 
     #song command
     @commands.command()
     async def song(self, ctx):
+        """Posts a random song"""
         songs = [
             "https://open.spotify.com/track/6nRJTn59VvyEw333QzxPOb?si=20c64379396e4f78",
             "https://open.spotify.com/track/1uC1sBpO2Orz049ApZNfxT?si=b73be6589f294332",
@@ -44,6 +47,7 @@ class AthenaCommands(commands.Cog):
     #Vi quote command
     @commands.command()
     async def viquote(self, ctx):
+        """Posts a random Vi quote"""
         quotes = [
             "Punch first. Ask questions while punching.",
             "If I want your opinion, I'll beat it out of you.",
