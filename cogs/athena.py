@@ -1,4 +1,5 @@
 import discord
+import random
 from discord.ext import commands
 
 class AthenaCommands(commands.Cog):
@@ -42,7 +43,7 @@ class AthenaCommands(commands.Cog):
             "https://open.spotify.com/track/23eNTZIykjVEktFtNUgiTh?si=f2ae0a76f8814a93",
             "https://open.spotify.com/track/6hg8bNptuX6Iv1WylVfb1W?si=792875383a5e4633",
         ]
-        await ctx.send(random.sample(songs, 1)[0])
+        await ctx.send(random.choice(songs))
 
     #Vi quote command
     @commands.command()
@@ -72,7 +73,7 @@ class AthenaCommands(commands.Cog):
             "Ahahah. Cait's still got a sweet tooth for bad cops?",
             "Piltover enforcer, on the scene!",
         ]
-        await ctx.send(random.sample(quotes, 1)[0])
+        await ctx.send(random.choice(quotes))
 
 def setup(bot: commands.Bot):
     cog = AthenaCommands(bot)
