@@ -15,12 +15,12 @@ class AthenaCommands(commands.Cog):
     @commands.command()
     async def pog(self, ctx):
         """Sends a pog emoji"""
-        await ctx.send('<:pog:804373562274217985>')
+        await ctx.send('<:POG:859456520717729803>')
 
     @commands.command(aliases=['kys'])
     async def NOW(self, ctx):
         """Sends a LTG emoji"""
-        await ctx.send('<a:NOW:925563242779136040>')
+        await ctx.send('<a:NOW:930543555682926644>')
 
     #song command
     @commands.command()
