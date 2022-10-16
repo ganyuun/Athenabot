@@ -110,8 +110,8 @@ class EmbedHelpCommand(commands.HelpCommand):
         await self.get_destination().send(embed=embed)
 
 
-def setup(bot: commands.Bot):
+async def setup(bot: commands.Bot):
     cog = Admin(bot)
-    bot.add_cog(cog)
+    await bot.add_cog(cog)
     bot.help_command = EmbedHelpCommand()
     bot.help_command.cog = cog

@@ -311,47 +311,32 @@ class Music(commands.Cog):
         await ctx.voice_state.stop()
         del self.voice_states[ctx.guild.id]
 
-    @commands.command()
-    async def volume(self, ctx: commands.Context, *, volume: int):
-        """Sets the volume of the player."""
-
-        if not ctx.voice_state.is_playing:
-            return await ctx.send('Nothing being played at the moment.')
-
-        if 0 > volume > 100:
-            return await ctx.send('Volume must be between 0 and 100')
-
-        ctx.voice_state.volume = volume / 100
-        await ctx.send('Volume of the player set to {}%'.format(volume))
-
     @commands.command(aliases=['current', 'playing'])
     async def now(self, ctx: commands.Context):
         """Displays the currently playing song."""
-
-        await ctx.send(embed=ctx.voice_state.current.create_embed())
+        if ctx.voice_state.current:
+            await ctx.send(embed=ctx.voice_state.current.create_embed())
+        else:
+            await ctx.send("Not playing anything.")
 
     @commands.command()
     async def pause(self, ctx: commands.Context):
         """Pauses the currently playing song."""
-
-        if not ctx.voice_state.is_playing and ctx.voice_state.voice.is_playing():
+        if ctx.voice_state.voice.is_playing():
             ctx.voice_state.voice.pause()
             await ctx.message.add_reaction('⏯')
 
     @commands.command()
     async def resume(self, ctx: commands.Context):
         """Resumes a currently paused song."""
-
-        if not ctx.voice_state.is_playing and ctx.voice_state.voice.is_paused():
+        if ctx.voice_state.voice.is_paused():
             ctx.voice_state.voice.resume()
             await ctx.message.add_reaction('⏯')
 
     @commands.command()
     async def stop(self, ctx: commands.Context):
         """Stops playing song and clears the queue."""
-
         ctx.voice_state.songs.clear()
-
         if not ctx.voice_state.is_playing:
             ctx.voice_state.voice.stop()
             await ctx.message.add_reaction('⏹')
@@ -472,6 +457,6 @@ class Music(commands.Cog):
             if ctx.voice_client.channel != ctx.author.voice.channel:
                 raise commands.CommandError('Bot is already in a voice channel.')
 
-def setup(bot: commands.Bot):
+async def setup(bot: commands.Bot):
     cog = Music(bot)
-    bot.add_cog(cog)
+    await bot.add_cog(cog)

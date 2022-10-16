@@ -80,6 +80,6 @@ class AthenaCommands(commands.Cog):
         ]
         await ctx.send(random.choice(quotes))
 
-def setup(bot: commands.Bot):
+async def setup(bot: commands.Bot):
     cog = AthenaCommands(bot)
-    bot.add_cog(cog)
+    await bot.add_cog(cog)
